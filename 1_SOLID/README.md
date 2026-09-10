@@ -178,10 +178,18 @@ class ConverterAppTest {
 
 		ConverterApp.transform(input, output);
 
-		String expected = "<products>\n"
-				+ "<product>\n\t<name>motherboard</name>\n\t<price>100</price>\n</product>\n"
-				+ "<product>\n\t<name>cpu</name>\n\t<price>80</price>\n</product>\n"
-				+ "</products>\n";
+		String expected = """
+				<products>
+				<product>
+				\t<name>motherboard</name>
+				\t<price>100</price>
+				</product>
+				<product>
+				\t<name>cpu</name>
+				\t<price>80</price>
+				</product>
+				</products>
+				""";
 		assertEquals(expected, Files.readString(output.toPath()));
 	}
 }
@@ -198,7 +206,7 @@ class ConverterAppTest {
 **Consejos:**
 
 - Un test fallido no se arregla "de memoria": mira primero el mensaje de error que imprime JUnit (te dice qué valores no coincidieron y en qué línea).
-- El test anterior comprueba el contenido completo del fichero. Fíjate en los saltos de línea (`\n`), incluido el último: el programa escribe una línea nueva tras cada elemento.
+- El test anterior comprueba el contenido completo del fichero con un *text block* (Java 15+, disponible a partir de Java 17). Fíjate en que el bloque incluye un salto de línea final: el programa escribe una línea nueva tras cada elemento. Si editas el bloque, procura no cambiar la indentación ni los saltos de línea, o el test dejará de pasar.
 
 #### Código base
 
