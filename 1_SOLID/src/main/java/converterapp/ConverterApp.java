@@ -12,27 +12,32 @@ public class ConverterApp {
 		File input = getInputFile();
 		File output = getOutputFile();
 
-		transform(input, output);
-	}
-
-	public static void transform(File input, File output) {
-		Scanner scanner = null;
-		PrintStream out = null;
 		try {
-			scanner = new Scanner(input);
-
+			transform(input, output);
 		} catch (FileNotFoundException e) {
-			System.err.println("the file " + input.getAbsolutePath()
-					+ " does not exists: " + e.getMessage());
+			System.err.println(e.getMessage());
 			System.exit(1);
 		}
+	}
 
+	public static void transform(File input, File output)
+			throws FileNotFoundException {
+		Scanner scanner;
+		try {
+			scanner = new Scanner(input);
+		} catch (FileNotFoundException e) {
+			throw new FileNotFoundException("the file "
+					+ input.getAbsolutePath() + " does not exist: "
+					+ e.getMessage());
+		}
+
+		PrintStream out;
 		try {
 			out = new PrintStream(new FileOutputStream(output));
-		} catch (FileNotFoundException e1) {
-			System.err.println("the file " + input.getAbsolutePath()
-					+ " does cannot be created: " + e1.getMessage());
-			System.exit(1);
+		} catch (FileNotFoundException e) {
+			throw new FileNotFoundException("the file "
+					+ output.getAbsolutePath() + " cannot be created: "
+					+ e.getMessage());
 		}
 
 		out.println("<products>");
@@ -42,6 +47,7 @@ public class ConverterApp {
 		}
 		out.println("</products>");
 
+		scanner.close();
 		out.close();
 	}
 
@@ -49,7 +55,7 @@ public class ConverterApp {
 		String[] tokens = line.split("\t");
 		if (tokens.length != 2) {
 			throw new IllegalArgumentException(
-					"the line does not contain 3 tokens");
+					"the line does not contain 2 tokens");
 		}
 
 		return "<product>\n\t<name>" + tokens[0] + "</name>\n\t<price>"
