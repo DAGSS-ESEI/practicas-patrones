@@ -112,14 +112,27 @@ El código fuente de un proyecto Maven (importable en netbeans, eclipse, vscode.
 
 ## Tareas.
 
-Antes de empezar descarga el código fuente asociado a esta tarea e impórtalo en el IDE.
+### Antes de empezar
+
+1. Descarga el código fuente asociado a esta tarea e impórtalo en el IDE.
+2. **Escribe un test e2e básico** que verifique que el programa transforma la entrada en XML. Concretamente:
+   - Crea el test en `src/test/java/converterapp/ConverterAppTest.java`.
+   - Llama directamente a `ConverterApp.transform(input, output)` con un fichero de entrada y uno de salida temporales.
+   - Comprueba que el fichero de salida contiene el XML esperado.
+   - Ejecuta los tests con `mvn test`.
+
+   Si nunca has usado JUnit 5, consulta antes el apartado [JUnit 5](#junit-5).
+
+### Tareas
 
 1. Identifica las diferentes responsabilidades que existen en este programa. Haz una lista con ellas.
 2. Refactoriza la aplicación para cumplir estos **objetivos**:
     1. El origen de datos (ahora ficheros) pueda ser distinto **y/o** el destino de los datos también.
     2. La transformación que se hace de la entrada pueda ser otra representación basada en texto cualquiera (no a XML).
 
-Una vez refactorizada,
+> **Importante**: cuando refactorices, adapta tu test e2e al nuevo código para que siga pasando. Así comprobarás que la refactorización conserva el comportamiento.
+
+### Una vez refactorizada
 
 1. Responde a estas cuestiones:
     - ¿**Qué** principio o principios SOLID has empleado para cada uno de los dos objetivos anteriores, **cómo** los has empleado y **por qué**?
@@ -136,6 +149,56 @@ Una vez refactorizada,
     | nombre de clase | descripción de la modificación | clase/interfaz que se debe extender o implementar |
 
 4. Modifica la aplicación para que la salida se produzca por pantalla y no a fichero. ¿Tuviste que cambiar código existente a mayores que el método *main*? Describe brevemente la modificación.
+5. **Añade una nueva transformación**: implementa un `JsonTransformer` que genere la salida en formato JSON (por ejemplo, `[{"name":"motherboard","price":"100"}]`) y amplía tu test e2e para que cubra esta nueva transformación. Comprueba que para añadirla no has tenido que modificar las clases existentes: esa es la demostración práctica del principio OCP.
+
+### JUnit 5
+
+JUnit 5 es el framework de testing de Java que usa este proyecto. Un test es una clase Java que ejecuta un método anotado con `@Test` y comprueba resultados con *assertions*.
+
+**Estructura de un test:**
+
+```java
+package converterapp;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.File;
+import java.nio.file.Files;
+
+import org.junit.jupiter.api.Test;
+
+class ConverterAppTest {
+
+	@Test
+	void transformGeneratesExpectedXml() throws Exception {
+		File input = File.createTempFile("input", ".txt");
+		Files.writeString(input.toPath(), "motherboard\t100\ncpu\t80\n");
+
+		File output = File.createTempFile("output", ".xml");
+
+		ConverterApp.transform(input, output);
+
+		String expected = "<products>\n"
+				+ "<product>\n\t<name>motherboard</name>\n\t<price>100</price>\n</product>\n"
+				+ "<product>\n\t<name>cpu</name>\n\t<price>80</price>\n</product>\n"
+				+ "</products>\n";
+		assertEquals(expected, Files.readString(output.toPath()));
+	}
+}
+```
+
+**Cómo funciona:**
+
+- Los tests se colocan en `src/test/java`, en el mismo paquete que la clase que prueban.
+- El método de prueba se anota con `@Test`. Los métodos pueden declarar `throws Exception` porque el framework no lo prohíbe.
+- `File.createTempFile(...)` crea un fichero temporal único; `Files.writeString` escribe texto en él y `Files.readString` lo lee.
+- `assertEquals(expected, actual)` falla el test si los dos valores no coinciden.
+- Para ejecutar los tests escribe `mvn test` en la raíz del proyecto. Al final verás un resumen como `Tests run: 1, Failures: 0`.
+
+**Consejos:**
+
+- Un test fallido no se arregla "de memoria": mira primero el mensaje de error que imprime JUnit (te dice qué valores no coincidieron y en qué línea).
+- El test anterior comprueba el contenido completo del fichero. Fíjate en los saltos de línea (`\n`), incluido el último: el programa escribe una línea nueva tras cada elemento.
 
 #### Código base
 
