@@ -31,7 +31,7 @@ cd ejercicios-dagss
 ```
 3. Añadir el repositorio remoto donde el profesor sube y actualiza enunciados:
 ```bash
-git remote add profesor https://github.com/GID-IAXPRO/dagss-practicas-patrones.git
+git remote add profesor https://github.com/DAGSS-ESEI/practicas-patrones.git
 ```
 
 ### Trabajo diario
