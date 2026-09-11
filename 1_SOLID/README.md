@@ -167,30 +167,14 @@ import java.nio.file.Files;
 
 import org.junit.jupiter.api.Test;
 
-class ConverterAppTest {
+class ExampleTest {
 
 	@Test
-	void transformGeneratesExpectedXml() throws Exception {
-		File input = File.createTempFile("input", ".txt");
-		Files.writeString(input.toPath(), "motherboard\t100\ncpu\t80\n");
+	void writesAndReadsATempFile() throws Exception {
+		File file = File.createTempFile("example", ".txt");
+		Files.writeString(file.toPath(), "hello");
 
-		File output = File.createTempFile("output", ".xml");
-
-		ConverterApp.transform(input, output);
-
-		String expected = """
-				<products>
-				<product>
-				\t<name>motherboard</name>
-				\t<price>100</price>
-				</product>
-				<product>
-				\t<name>cpu</name>
-				\t<price>80</price>
-				</product>
-				</products>
-				""";
-		assertEquals(expected, Files.readString(output.toPath()));
+		assertEquals("hello", Files.readString(file.toPath()));
 	}
 }
 ```
@@ -203,10 +187,24 @@ class ConverterAppTest {
 - `assertEquals(expected, actual)` falla el test si los dos valores no coinciden.
 - Para ejecutar los tests escribe `mvn test` en la raíz del proyecto. Al final verás un resumen como `Tests run: 1, Failures: 0`.
 
+**Text blocks para comparar XML:**
+
+Para comparar contenido de varias líneas resulta cómodo usar un *text block* (Java 15+, disponible desde Java 17):
+
+```java
+String expected = """
+		<product>
+		\t<name>motherboard</name>
+		</product>
+		""";
+```
+
+Un text block empieza y termina con `"""`, incluye el salto de línea final y respeta la indentación. Cuidado con los espacios y con los tabuladores (`\t`): un cambio involuntario hace que el test falle.
+
 **Consejos:**
 
 - Un test fallido no se arregla "de memoria": mira primero el mensaje de error que imprime JUnit (te dice qué valores no coincidieron y en qué línea).
-- El test anterior comprueba el contenido completo del fichero con un *text block* (Java 15+, disponible a partir de Java 17). Fíjate en que el bloque incluye un salto de línea final: el programa escribe una línea nueva tras cada elemento. Si editas el bloque, procura no cambiar la indentación ni los saltos de línea, o el test dejará de pasar.
+- En el test del conversor, compara el contenido completo del fichero de salida y fíjate en los saltos de línea del XML esperado, incluido el último: el programa escribe una línea nueva tras cada elemento.
 
 #### Código base
 
