@@ -11,7 +11,7 @@ Para realizar los ejercicios necesitas:
 - **JDK 21**.
 - **Visual Studio Code** con la extensión [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack).
 
-Abre en VSCode la **carpeta raíz** del repositorio clonado (*File → Open Folder…*), **no** la carpeta de cada ejercicio. Así VSCode detecta todos los proyectos Maven (`1_SOLID` y los que se añadan en el futuro) y los muestra en la misma ventana.
+Abre en VSCode la **carpeta raíz** del repositorio clonado (*File → Open Folder…*), **no** la carpeta de cada ejercicio. Así VSCode detecta todos los proyectos Maven del repositorio y los muestra en la misma ventana.
 
 ## Ejercicios
 
