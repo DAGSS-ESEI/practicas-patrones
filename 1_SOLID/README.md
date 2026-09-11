@@ -108,13 +108,11 @@ ram memory	70
 hard disk	150
 ```
 
-El código fuente de un proyecto Maven (importable en netbeans, eclipse, vscode...) conteniendo el programa se puede descargar de aquí.
-
 ## Tareas.
 
 ### Antes de empezar
 
-1. Descarga el código fuente asociado a esta tarea e impórtalo en el IDE.
+1. Abre la carpeta **raíz** del repositorio en VSCode (con Java 21 y *Extension Pack for Java* instalados; ver [Entorno de trabajo](../README.md#entorno-de-trabajo)). VSCode detectará automáticamente el proyecto Maven `1_SOLID`.
 2. **Escribe un test e2e básico** que verifique que el programa transforma la entrada en XML. Concretamente:
    - Crea el test en `src/test/java/converterapp/ConverterAppTest.java`.
    - Llama directamente a `ConverterApp.transform(input, output)` con un fichero de entrada y uno de salida temporales.
@@ -205,7 +203,3 @@ Un text block empieza y termina con `"""`, incluye el salto de línea final y re
 
 - Un test fallido no se arregla "de memoria": mira primero el mensaje de error que imprime JUnit (te dice qué valores no coincidieron y en qué línea).
 - En el test del conversor, compara el contenido completo del fichero de salida y fíjate en los saltos de línea del XML esperado, incluido el último: el programa escribe una línea nueva tras cada elemento.
-
-#### Código base
-
-[ejercicio-solid-src.zip](https://moovi.uvigo.gal/pluginfile.php/186091/mod_page/content/4/ejercicio-solid-src.zip?time=1726770620864)
