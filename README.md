@@ -1,8 +1,8 @@
 # Diseño de Arquitecturas de Grandes Sistemas Software. Ejercicios prácticos de diseño
 
-En este repositorio se encuentran varios proyectos que constituyen enunciados de ejercicios prácticos de diseño detallado de software, cuyo objetivo es que el alumno practique codificando soluciones de diseño que aplican principios y patrones de diseño clásicos, concreatamente los principios SOLID y los patrones de diseño GoF (Gang of Four).
+En este repositorio se encuentran varios proyectos que constituyen enunciados de ejercicios prácticos de diseño detallado de software, cuyo objetivo es que el alumno practique codificando soluciones de diseño que aplican principios y patrones de diseño clásicos, concretamente los principios SOLID y los patrones de diseño GoF (Gang of Four).
 
-Concretamente, el repositorio contiene varios proyecto Java (Maven), que el alumno debe desacargar mediante un clonado de este repositorio y crear sus soluciones y haciendo commit para poder trabajar tanto en el laboratorio como en casa.
+Concretamente, el repositorio contiene varios proyectos Java (Maven), que el alumno debe descargar mediante un clonado de este repositorio y crear sus soluciones haciendo commit para poder trabajar tanto en el laboratorio como en casa.
 
 ## Ejercicios
 
@@ -10,28 +10,32 @@ Concretamente, el repositorio contiene varios proyecto Java (Maven), que el alum
 
 ## Trabajo con Git y GitHub
 
-Para trabajar con el respositorio se deberá:
+Para trabajar con el repositorio se deberá:
 
 ### Crear repositorio en GitHub y clonar al PC local
 
 
 1. Crear, si no se dispone de ella, una cuenta en [GitHub](https://github.com).
 
-2. Crear en GitHub un repositorio PRIVADO vacío con nombre "dagss-practicas-patrones". Anotar la URL (ejemplo: https://github.com/pepeperez/dagss-practicas-patrones).
+2. Crear en GitHub un repositorio PRIVADO vacío con nombre "dagss-practicas-patrones". Debe quedar **totalmente vacío**: no marcar "Add a README", ni añadir `.gitignore` ni licencia (si tiene contenido inicial, el primer `git pull` del profesor fallará por *historias no relacionadas*). Anotar la URL (ejemplo: https://github.com/pepeperez/dagss-practicas-patrones).
 
 Ahora, en el PC o PCs, donde se vaya a trabajar:
 
 1. Instalar el [cliente de git](https://git-scm.com) para trabajar en consola.
 
-2. Clonar el respositorio vacío, por ejemplo (**modificar "pepeperez" por el usuario de GitHub**):
+2. Clonar el repositorio vacío, por ejemplo (**modificar "pepeperez" por el usuario de GitHub**):
 
 ```bash
 git clone https://github.com/pepeperez/dagss-practicas-patrones
-cd ejercicios-dagss
+cd dagss-practicas-patrones
 ```
 3. Añadir el repositorio remoto donde el profesor sube y actualiza enunciados:
 ```bash
 git remote add profesor https://github.com/DAGSS-ESEI/practicas-patrones.git
+```
+4. Traer los enunciados iniciales del repositorio del profesor:
+```bash
+git pull profesor main --no-rebase --no-edit
 ```
 
 ### Trabajo diario
@@ -41,7 +45,7 @@ Cada vez que se trabaje en los ejercicios, y **con frecuencia**, se debe hacer *
 ```bash
 git add .
 git commit -m "Introducida una interfaz y su implementación"
-git push -u origin main # el -u es sólo necesario la primera vez
+git push -u origin HEAD # el -u es sólo necesario la primera vez; HEAD empuja la rama actual (main o master)
 ```
 
 ### Cuando el profesor publica nuevos ejercicios
