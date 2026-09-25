@@ -51,9 +51,25 @@ Un ejemplo de entrada está en [libros.txt](libros.txt).
 
 Los libros deben importarse a una estructura de objetos como la del siguiente diagrama de clases:
 
-![Diagrama de clases del modelo de biblioteca](diagrama-biblioteca.png)
+```mermaid
+classDiagram
+    class Biblioteca {
+        +getLibros() List~Libro~
+    }
+    class Libro {
+        +Libro(isbn: String, autor: Autor)
+        +getISBN() String
+        +getAutor() Autor
+    }
+    class Autor {
+        +Autor(nombre: String)
+        +getNombre() String
+    }
 
-*Diagrama de clases del modelo de biblioteca.*
+    Biblioteca "1" o-- "0..*" Libro : libros
+    Libro "0..*" --> "1" Autor : autor
+    Biblioteca "1" o-- "0..*" Autor : autores
+```
 
 También se contempla la posibilidad de transformar ese mismo fichero de texto en otra representación: un fichero XML con la forma:
 
