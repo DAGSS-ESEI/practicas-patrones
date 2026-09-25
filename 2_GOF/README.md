@@ -34,8 +34,10 @@ Se dispone de una implementación en `src/main/java/ejercicio1`, cuya clase prin
 2. Refactoriza la implementación aplicando un patrón GoF para que:
    - añadir una nueva familia de soldados no afecte a la clase `Jugador` ni a sus subclases;
    - los jugadores no tengan que instanciar clases concretas (por ejemplo, `new ArtilleroAtreides()`), sino que deleguen la creación de los soldados;
+   - la familia se elija una única vez (por ejemplo, en `main`) y el jugador la reciba ya resuelta, sin que este conozca las clases concretas;
    - un mismo jugador no pueda mezclar soldados de familias distintas.
 3. Elabora el diagrama de clases de la versión refactorizada y justifica brevemente el patrón elegido.
+4. Añade una tercera familia (los Corrino), con sus dos tipos de soldado, y comprueba que no has necesitado modificar ni `Jugador` ni sus subclases.
 
 > **Importante**: la refactorización no debe cambiar el comportamiento observable del juego. `JugadorHumano` debe seguir pidiendo las acciones `d`, `b`, `a` y `z`, y `JugadorMaquina` debe seguir disparando y poniendo bombas.
 
@@ -87,6 +89,8 @@ También se contempla la posibilidad de transformar ese mismo fichero de texto e
 	</libro>
 </libros>
 ```
+
+> **Nota**: la representación XML se puede generar **volcando directamente** el fichero (streaming), sin necesidad de mantener la estructura de objetos en memoria. Por tanto, los autores pueden aparecer repetidos y no es necesario deduplicarlos.
 
 Se proporciona un esqueleto de las clases del modelo (`Autor`, `Libro` y `Biblioteca`) y de la clase principal (`Main`) en `src/main/java/ejercicio2`. Puedes añadir los métodos que necesites, sobre todo a `Biblioteca`.
 
@@ -190,7 +194,7 @@ PEPE	B	25	NO
 
 ### Tareas
 
-1. Diseña el sistema empleando el/los patrones GoF que consideres adecuados, teniendo en cuenta que: 1) es posible que se añadan distintos complementos en el futuro, 2) se desea evitar una explosión de clases para cada una de las posibles combinaciones a la hora de calcular una nómina y 3) el código que genera las órdenes de pago al banco no debe verse afectado porque una nómina tenga más o menos complementos (simplemente quiere poder calcular el total de cada empleado).
+1. Diseña el sistema empleando el/los patrones GoF que consideres adecuados, teniendo en cuenta que: 1) es posible que se añadan distintos complementos en el futuro, 2) se desea evitar una explosión de clases para cada una de las posibles combinaciones a la hora de calcular una nómina, 3) el código que genera las órdenes de pago al banco no debe verse afectado porque una nómina tenga más o menos complementos (simplemente quiere poder calcular el total de cada empleado) y 4) cada empleado puede acumular un número distinto de complementos, por lo que la composición no puede ser una cadena fija, sino formarse con un número variable de complementos.
 2. Elabora el diagrama de clases de tu solución y justifica brevemente el patrón elegido.
 3. Implementa el sistema en Java, en el paquete `ejercicio4`, que tome como entrada un fichero como el del ejemplo y saque órdenes de pago; por ejemplo:
 
