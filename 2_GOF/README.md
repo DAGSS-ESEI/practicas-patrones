@@ -8,10 +8,14 @@ Comprender y saber aplicar patrones de diseño GoF (*Gang of Four*) para refacto
 
 Abre la carpeta **raíz** del repositorio en VSCode (con Java 21 y *Extension Pack for Java* instalados; ver [Entorno de trabajo](../README.md#entorno-de-trabajo)). VSCode detectará automáticamente los proyectos Maven `1_SOLID` y `2_GOF`.
 
-Para ejecutar el código del Ejercicio 1 usa el botón *Run* de VSCode sobre `JuegoEstrategia` o, desde la carpeta `2_GOF`, el comando:
+Para ejecutar el código usa el botón *Run* de VSCode sobre la clase con `main` correspondiente o, desde la carpeta `2_GOF`, el comando:
 
 ```bash
+# Ejercicio 1
 mvn compile exec:java -Dexec.mainClass=ejercicio1.JuegoEstrategia
+
+# Ejercicio 2 (una vez implementado)
+mvn compile exec:java -Dexec.mainClass=ejercicio2.Main
 ```
 
 ## Ejercicio 1. Juego de estrategia
@@ -68,8 +72,10 @@ También se contempla la posibilidad de transformar ese mismo fichero de texto e
 </libros>
 ```
 
+Se proporciona un esqueleto de las clases del modelo (`Autor`, `Libro` y `Biblioteca`) y de la clase principal (`Main`) en `src/main/java/ejercicio2`. Puedes añadir los métodos que necesites, sobre todo a `Biblioteca`.
+
 ### Tareas
 
 1. Diseña el sistema aplicando el/los patrón/es de diseño GoF que consideres más adecuados, teniendo en cuenta que se desean construir **dos representaciones distintas** (la `Biblioteca` en memoria y el XML) y que el algoritmo de creación es el mismo en ambos casos: una iteración que va añadiendo libros, independiente de la representación final. **Nota**: se pueden añadir métodos a las clases del diagrama (sobre todo a `Biblioteca`).
 2. Elabora el diagrama de clases de tu solución y justifica brevemente el patrón o patrones elegidos.
-3. Implementa el sistema en Java, en el paquete `ejercicio2`. El `main`, sin interacción con el usuario, debe leer el fichero `libros.txt`, crear la estructura `Biblioteca` en memoria y, después, **volver a leer el fichero** y crear el fichero `libros.xml`, como si fuesen dos rutinas independientes.
+3. Completa el esqueleto proporcionado e implementa el sistema en Java, en el paquete `ejercicio2`. El `main`, sin interacción con el usuario, debe leer el fichero `libros.txt`, crear la estructura `Biblioteca` en memoria y, después, **volver a leer el fichero** y crear el fichero `libros.xml`, como si fuesen dos rutinas independientes.
