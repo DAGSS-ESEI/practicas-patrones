@@ -66,9 +66,9 @@ classDiagram
         +getNombre() String
     }
 
-    Biblioteca "1" o-- "0..*" Libro : libros
+    Biblioteca "1" o--> "0..*" Libro : libros
     Libro "0..*" --> "1" Autor : autor
-    Biblioteca "1" o-- "0..*" Autor : autores
+    Biblioteca "1" o--> "0..*" Autor : autores
 ```
 
 También se contempla la posibilidad de transformar ese mismo fichero de texto en otra representación: un fichero XML con la forma:
