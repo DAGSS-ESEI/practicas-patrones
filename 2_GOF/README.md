@@ -19,6 +19,9 @@ mvn compile exec:java -Dexec.mainClass=ejercicio2.Main
 
 # Ejercicio 3
 mvn compile exec:java -Dexec.mainClass=ejercicio3.Main
+
+# Ejercicio 4
+mvn compile exec:java -Dexec.mainClass=ejercicio4.Main
 ```
 
 ## Ejercicio 1. Juego de estrategia
@@ -190,18 +193,20 @@ La base de datos de empleados es un fichero con el siguiente formato:
 NOMBRE<TABULADOR>ESCALA<TABULADOR>AÑOS_TRABAJADOS<TABULADOR>CARGO_GESTION(SI/NO)
 ```
 
-Un fichero de ejemplo puede ser el siguiente:
+Un fichero de ejemplo está en [empleados.txt](empleados.txt):
 
 ```text
 JUAN	A	10	SI
 PEPE	B	25	NO
 ```
 
+Se proporciona un esqueleto en `src/main/java/ejercicio4` con la escala (`Escala`), los datos del empleado (`Empleado`), un lector del fichero (`LectorEmpleados`) y la clase principal (`Main`). El cálculo de la nómina y sus complementos debes diseñarlo tú.
+
 ### Tareas
 
 1. Diseña el sistema empleando el/los patrones GoF que consideres adecuados, teniendo en cuenta que: 1) es posible que se añadan distintos complementos en el futuro, 2) se desea evitar una explosión de clases para cada una de las posibles combinaciones a la hora de calcular una nómina, 3) el código que genera las órdenes de pago al banco no debe verse afectado porque una nómina tenga más o menos complementos (simplemente quiere poder calcular el total de cada empleado) y 4) cada empleado puede acumular un número distinto de complementos, por lo que la composición no puede ser una cadena fija, sino formarse con un número variable de complementos.
 2. Elabora el diagrama de clases de tu solución y justifica brevemente el patrón elegido.
-3. Implementa el sistema en Java, en el paquete `ejercicio4`, que tome como entrada un fichero como el del ejemplo y saque órdenes de pago; por ejemplo:
+3. Completa el esqueleto proporcionado en el paquete `ejercicio4` e implementa un sistema que tome como entrada un fichero como el de ejemplo y saque órdenes de pago; por ejemplo:
 
 ```text
 JUAN 1435
