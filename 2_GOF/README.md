@@ -16,6 +16,9 @@ mvn compile exec:java -Dexec.mainClass=ejercicio1.JuegoEstrategia
 
 # Ejercicio 2 (una vez implementado)
 mvn compile exec:java -Dexec.mainClass=ejercicio2.Main
+
+# Ejercicio 3
+mvn compile exec:java -Dexec.mainClass=ejercicio3.Main
 ```
 
 ## Ejercicio 1. Juego de estrategia
@@ -148,11 +151,13 @@ miRunnableThread.start();
 miRunnableThread.join();
 ```
 
+Se proporciona un esqueleto en `src/main/java/ejercicio3` con los seis programas (`ProgramaA`, `ProgramaB`, `ProgramaC`, `ProgramaD`, `ProgramaE` y `ProgramaF`) y la clase principal (`Main`). El diseño de los trabajos y su ejecución en serie o en paralelo debes implementarlo tú.
+
 ### Tareas
 
 1. Diseña el sistema empleando el/los patrones GoF que consideres adecuados, teniendo en cuenta que los trabajos se podrán combinar de forma distinta (según el fichero de configuración) y que tanto la ejecución de un trabajo como la de un programa se debe realizar invocando el método `run()`.
 2. Elabora el diagrama de clases de tu solución y justifica brevemente el patrón elegido.
-3. Implementa el sistema en Java, en el paquete `ejercicio3`, y un `main` que cree en memoria la estructura del trabajo de la figura y la ejecute. Debe salir por pantalla la salida de cada programa; por ejemplo:
+3. Completa el esqueleto proporcionado en el paquete `ejercicio3` e implementa un `main` que cree en memoria la estructura del trabajo de la figura y la ejecute. Debe salir por pantalla la salida de cada programa; por ejemplo:
 
 ```text
 [INICIO] ProgramaA
