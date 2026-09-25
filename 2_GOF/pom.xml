@@ -5,34 +5,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>es.uvigo.esei.dagss</groupId>
-	<artifactId>1_SOLID</artifactId>
+	<artifactId>2_GOF</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>1_SOLID</name>
+	<name>2_GOF</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.release>21</maven.compiler.release>
 	</properties>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>5.10.2</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.2.5</version>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>
