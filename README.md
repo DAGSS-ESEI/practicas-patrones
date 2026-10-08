@@ -17,6 +17,7 @@ Abre en VSCode la **carpeta raíz** del repositorio clonado (*File → Open Fold
 
 - [1. SOLID](1_SOLID/README.md)
 - [2. Patrones de diseño GoF (I)](2_GOF/README.md)
+- [3. Patrones de diseño GoF (II)](3_GOF/README.md)
 
 ## Trabajo con Git y GitHub
 
