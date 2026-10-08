@@ -37,9 +37,10 @@ public abstract class AbstractCalculadoraE2ETest {
 	 */
 	protected abstract Consumer<String[]> main();
 
-	private void ejecutar(String... lineas) {
+	protected String ejecutar(String... lineas) {
 		systemIn.setInputStream(new LinesAltStream(lineas));
 		main().accept(new String[0]);
+		return systemOut.getText();
 	}
 
 	@Test
